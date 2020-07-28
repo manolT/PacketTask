@@ -7,7 +7,14 @@ import java.util.ArrayList;
 
 public class CLInputHandler {
 
-	public static void engageInput(String fileName) {
+	/**
+	* Handles the -i flag and the command line input. It generates packets 
+	* based on the command line input and writes the to a file.
+	*
+	* @param  fileName	filename of the output file
+	* @return void
+	*/
+	public static void engageCLInput(String fileName) {
 		File output = new File(fileName);
 
 		BufferedReader reader = new BufferedReader(

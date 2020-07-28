@@ -4,7 +4,14 @@ import java.util.Base64;
 
 public class Utilities {
 
-	static String generateSignature(String word) {
+	/**
+	* Generates a signature based on a string that is its MD5 encoding and then
+	* Base64 encoding.
+	*
+	* @param  word the string that will be processed
+	* @return      the signature of the string
+	*/
+	public static String generateSignature(String word) {
 		String signature = "";
 		MessageDigest md = null;
 		try {

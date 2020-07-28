@@ -12,7 +12,7 @@ public class FileInputHandler {
 	* @param  fileName	filename of the input file containing the packets
 	* @return void
 	*/
-	public static void egnageOutput(String fileName) {
+	public static void egnageFileInput(String fileName) {
 		Scanner read = null;
 		try {
 			read = new Scanner(new File(fileName));
