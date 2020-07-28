@@ -8,12 +8,13 @@ import java.util.ArrayList;
 public class CLInputHandler {
 
 	/**
-	* Handles the -i flag and the command line input. It generates packets 
-	* based on the command line input and writes the to a file.
-	*
-	* @param  fileName	filename of the output file
-	* @return void
-	*/
+	 * Handles the -i flag and the command line input. It generates packets
+	 * based on the command line input and writes the to a file.
+	 *
+	 * @param fileName
+	 *            filename of the output file
+	 * @return void
+	 */
 	public static void engageCLInput(String fileName) {
 		File output = new File(fileName);
 
@@ -25,6 +26,11 @@ public class CLInputHandler {
 			input = reader.readLine();
 		} catch (IOException e) {
 			e.printStackTrace();
+		}
+
+		if (input.contains("|") || input.contains((";"))) {
+			throw new IllegalArgumentException(
+					"Command Line input contains illegal character | or ;");
 		}
 
 		// if the input is empty we create an empty file otherwise we continue
@@ -44,13 +50,13 @@ public class CLInputHandler {
 			for (String s : inputStrings) {
 				packets.add(new Packet(s));
 			}
-			
+
 			exportToFile(packets, output);
 		}
 
 	}
-	
-	//separates the words
+
+	// separates the words
 	private static String[] parseWords(char[] inputArr) {
 		ArrayList<String> inputStrings = new ArrayList<String>();
 
@@ -78,20 +84,20 @@ public class CLInputHandler {
 	}
 
 	/*
-	 * This is kept distinct from generateSignature() so the output format can 
+	 * This is kept distinct from generateSignature() so the output format can
 	 * be changed without needing to touch the signature generating algorithm
 	 */
 
 	private static void exportToFile(ArrayList<Packet> packets, File outFile) {
 		FileWriter writer = null;
-		
+
 		try {
 			writer = new FileWriter(outFile);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
-		for(Packet p : packets) {
+
+		for (Packet p : packets) {
 			try {
 				writer.write(p.getTuple() + "|");
 			} catch (IOException e) {
@@ -103,9 +109,7 @@ public class CLInputHandler {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
-		
-		
+
 	}
-	
+
 }
